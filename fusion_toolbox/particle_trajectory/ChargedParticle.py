@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.integrate import quad
+from scipy.interpolate import LinearNDInterpolator
 
 
 class ChargedParticle():

@@ -18,7 +18,6 @@ def test_updatePosition(test, expected):
     particle.updatePosition(test[2])
     npt.assert_array_equal(particle.getPosition(), np.array(expected))
 
-
 @pytest.mark.parametrize(
     "test, expected",
     [

@@ -2,7 +2,6 @@ import numpy as np
 import scipy.constants as constants
 import numpy.testing as npt
 import pytest
-
 @pytest.mark.parametrize(
     "test, expected",
     [
