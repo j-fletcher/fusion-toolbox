@@ -14,12 +14,13 @@ class Material:
     name: str
     composition: str
     density: Union[float, Callable]
+    thermal_capacity: Union[float, Callable] = None
     thermal_conductivity: Union[float, Callable] = None
     thermal_expansion_coefficient: Union[float, Callable] = None
     melting_temperature: float = None
     yield_strength: float = None
 
-    def save_to(self, filename: str):
+    def save_to(self, filename: str = "material_database.pkl"):
         """Add the material to the material_database file
 
         Args:
