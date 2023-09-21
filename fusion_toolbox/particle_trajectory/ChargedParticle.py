@@ -1,4 +1,7 @@
+import numpy as np
+
 from scipy.integrate import quad
+from scipy.interpolate import LinearNDInterpolator
 
 class ChargedParticle():
     def __init__(self, initialPosition, initialVelocity, charge, mass):
@@ -20,12 +23,28 @@ class ChargedParticle():
         self.position['z'] += dt * self.velocity.z
 
     def updateVelocity(self, dt, field):
-        self.velocity['x'] = quad(self.qm * (self.velocity.y*self.field.Bz - self.velocity.z*self.field.By, 0, dt)
-        self.velocity['y'] = quad(self.qm * (self.velocity.z*self.field.Bx - self.velocity.x*self.field.Bz, 0, dt) 
-        self.velocity['z'] = quad(self.qm * (self.velocity.x*self.field.By - self.velocity.y*self.field.Bx, 0, dt) 
-    
+        
+        # interpolate B field at particle position
+        Bx, By, Bz = self.interpolateBField(field)
+
+        self.velocity['x'] = quad(self.qm * (self.velocity.y*Bz - self.velocity.z*By, 0, dt))
+        self.velocity['y'] = quad(self.qm * (self.velocity.z*Bx - self.velocity.x*Bz, 0, dt))
+        self.velocity['z'] = quad(self.qm * (self.velocity.x*By - self.velocity.y*Bx, 0, dt))
+
     def getPosition(self):
         return self.position
     
     def getVelocity(self):
         return self.velocity
+
+    def interpolateBField(field):
+        
+        rx, ry, rz = np.meshgrid(field.x, field.y, field.z)
+        r = np.column_stack((rx.flatten(), ry.flatten(), rz.flatten()))
+
+        field = np.random.rand(10, 10, 10)
+        B = np.meshgrid(field.Bx, field.By, field.Bz)
+        smoothB = 
+
+        return interpolatedBx, interpolatedBy, interpolatedBz
+        
