@@ -1,13 +1,13 @@
 import numpy as np
-
+from scipy.interpolate import RegularGridInterpolator
 
 class Field:
     def __init__(self, x, y, z, fx, fy, fz):
         '''
         Field object that packages spatial grid and vector field together
-        x: x meshgrid
-        y: y meshgrid
-        z: z meshgrid
+        x: x linspace
+        y: y linspace
+        z: z linspace
         fx: x component of field over the grid
         fy: y component of field over the grid
         fz: z component of field over the grid
@@ -26,6 +26,9 @@ class Field:
         p: point in (x,y,z) space to interpolate to
         returns: field(p)
         '''
-        fx_interp = LinearNDInterpolator([], F)
+        mg = np.meshgrid(self.x, self.y, self.z, indexing='ij')
+        fx_interp = RegularGridInterpolator((self.x, self.y, self.z), self.fx)
+        fy_interp = RegularGridInterpolator((self.x, self.y, self.z), self.fy)
+        fz_interp = RegularGridInterpolator((self.x, self.y, self.z), self.fz)
 
-        return interpolatedFx, interpolatedFy, interpolatedFz
+        return fx_interp(p), fy_interp(p), fz_interp(p)
