@@ -12,15 +12,15 @@ class ChargedParticle():
         }
         self.velocity = {
             'x': initialVelocity[0],
-            'x': initialVelocity[1],
-            'x': initialVelocity[2]
+            'y': initialVelocity[1],
+            'z': initialVelocity[2]
         }
         self.qm = charge/mass
         
     def updatePosition(self, dt):
-        self.position['x'] += dt * self.velocity.x
-        self.position['y'] += dt * self.velocity.y
-        self.position['z'] += dt * self.velocity.z
+        self.position['x'] += dt * self.velocity['x']
+        self.position['y'] += dt * self.velocity['y']
+        self.position['z'] += dt * self.velocity['z']
 
     def updateVelocity(self, dt, field):
         
@@ -32,19 +32,8 @@ class ChargedParticle():
         self.velocity['z'] = quad(self.qm * (self.velocity.x*By - self.velocity.y*Bx, 0, dt))
 
     def getPosition(self):
-        return self.position
+        return np.array([self.position['x'], self.position['y'], self.position['z']])
     
     def getVelocity(self):
-        return self.velocity
-
-    def interpolateBField(field):
-        
-        rx, ry, rz = np.meshgrid(field.x, field.y, field.z)
-        r = np.column_stack((rx.flatten(), ry.flatten(), rz.flatten()))
-
-        field = np.random.rand(10, 10, 10)
-        B = np.meshgrid(field.Bx, field.By, field.Bz)
-        smoothB = 
-
-        return interpolatedBx, interpolatedBy, interpolatedBz
+        return np.array([self.velocity['x'], self.velocity['y'], self.velocity['z']])
         
