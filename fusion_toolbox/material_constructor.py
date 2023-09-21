@@ -1,13 +1,6 @@
 from dataclasses import dataclass
 from typing import Union, Callable
-
-
-def from_h5(filename, mat_names: list = None):
-    pass
-
-
-def make_dict():
-    pass
+from dataserve import DataContainer
 
 
 def make_openmc_material():
@@ -27,4 +20,17 @@ class Material:
     yield_strength: float = None
 
     def save_to(self, filename: str):
-        pass
+        """Add the material to the material_database file
+
+        Args:
+            filename (str): name of the material_database file
+        """
+
+        try:
+            dc = DataContainer(load_fn=filename)
+        except FileNotFoundError:
+            dc = DataContainer()
+            dc.trials = []
+
+        dc.trials.append(self)
+        dc.save('material_database.pkl')
