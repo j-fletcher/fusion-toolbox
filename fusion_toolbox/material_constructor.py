@@ -16,6 +16,8 @@ def make_openmc_material():
 
 @dataclass
 class Material:
+    """Material object that has all the material properties wanted
+    """
     name: str
     composition: str
     density: Union[float, Callable]
@@ -23,3 +25,6 @@ class Material:
     thermal_expansion_coefficient: Union[float, Callable] = None
     melting_temperature: float = None
     yield_strength: float = None
+
+    def save_to(self, filename: str):
+        pass
