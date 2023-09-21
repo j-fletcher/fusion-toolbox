@@ -1,16 +1,27 @@
 import requests
 
 class WolframAPI:
-    """
-        Object initializing WolframAlpha Short Answers API. Raises an exception 
-        if a developer key is not given.
-        Queries to the API are passed via the .query() classmethod.
+    """Object initializing WolframAlpha Short Answers API. Raises an exception 
+    if a developer key is not given.
+    Queries to the API are passed via the .query() classmethod.
         
-        App ID Keys specific to the Short Answers API may be requested 
-        via https://developer.wolframalpha.com
+    App ID Keys specific to the Short Answers API may be requested 
+    via https://developer.wolframalpha.com
         
-        Args:
-            key (str): WolframAlpha App ID
+    Parameters
+    ----------
+    key : str
+        WolframAlpha App ID
+
+    Example usage
+    -------------
+    from materials.QueryAPI import WolframAPI
+
+    key = 'YOUR-KEY-HERE'
+    api = WolframAPI(key)
+    ans = api.query("water","density")
+
+    print(ans)
     """
     _URL = 'http://api.wolframalpha.com/v2/result?appid={}&i={}%20of%20{}&units=metric'
 
@@ -23,16 +34,19 @@ class WolframAPI:
         self.key = key
                         
     def query(self, compound, property):
-        """
-        Calls the Short Answers API and returns a string of text with the reply
+        """Calls the Short Answers API and returns a string of text with the reply
 
-        Args:
-            compound (str): material of interest, e.g. "water"
-            property (str): desired material property, e.g. "density"
+        Parameters
+        ----------
+        compound : str
+            material of interest, e.g. "water"
+        property : str
+            desired material property, e.g. "density"
         
-        Returns:
-            result (str): WolframAlpha Short Answer to the prompt. 
-                          Given with metric units.
+        Returns
+        -------
+        result : str
+            WolframAlpha Short Answer to the prompt. Given with metric units.
         """
 
         url = self._URL.format(self.key, property.lower(), compound.lower())
