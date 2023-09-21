@@ -49,6 +49,10 @@ class WolframAPI:
             WolframAlpha Short Answer to the prompt. Given with metric units.
         """
 
+        # Check for spaces in keywords and apply HTML formatting if applicable
+        property = property.replace(' ','%20')
+        compound = compound.replace(' ','%20')
+
         url = self._URL.format(self.key, property.lower(), compound.lower())
         r = requests.get(url)
         if r.text == 'No short answer available': 
