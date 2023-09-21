@@ -22,8 +22,9 @@ class ChargedParticle():
         self.position['z'] += dt * self.velocity['z']
 
     def updateVelocity(self, dt, field):
-        
-        Bx, By, Bz = field.getB(components='all', position=self.position)
+
+        # interpolate B field at particle position
+        Bx, By, Bz = self.interpolateBField(field)
 
         self.velocity['x'] = quad(self.qm * (self.velocity.y*Bz - self.velocity.z*By, 0, dt))
         self.velocity['y'] = quad(self.qm * (self.velocity.z*Bx - self.velocity.x*Bz, 0, dt))
