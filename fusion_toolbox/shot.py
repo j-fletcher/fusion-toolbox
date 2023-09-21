@@ -12,6 +12,7 @@ class Shot:
         self.shot_id = None
         self.events = {}
         
+        #For now, default to loading from csv file
         self.load_csv()
         
 
@@ -54,7 +55,7 @@ def plot_standard_shot(shots):
     fig, axs = plt.subplots(ncols=1, nrows=2, sharex=True)
     for shot in shots:
         plt.sca(axs[0])
-        plot_shot(shot, "Plasma_Current (A)", color="tab:red", label="Plasma Current (A)")
+        plot_shot(shot, "Plasma_Current (A)", label="Plasma Current (A)")
         plt.sca(axs[1])
         plot_shot(shot, "Plasma_Density (particlesm3)", label="Plasma_Density (particlesm3)")
 
@@ -76,9 +77,7 @@ if __name__ == "__main__":
     plt.show()
 
 
-# plt.show()
-# plt.close()
-
-    # # Plot using the plot_standard_shot function
-    # fig, axs = plot_standard_shot(my_shot)
-    # plt.show()
+    # Plot using the plot_standard_shot function
+    my_shot2 = Shot(path="shots/shot_2023010102.csv", signals=[])
+    fig, axs = plot_standard_shot([my_shot,my_shot2])
+    plt.show()
