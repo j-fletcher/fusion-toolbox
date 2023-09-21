@@ -1,5 +1,4 @@
 import numpy as np
-
 from scipy.integrate import quad
 from scipy.interpolate import LinearNDInterpolator
 
@@ -24,8 +23,7 @@ class ChargedParticle():
 
     def updateVelocity(self, dt, field):
         
-        # interpolate B field at particle position
-        Bx, By, Bz = self.interpolateBField(field)
+        Bx, By, Bz = field.getB(components='all', position=self.position)
 
         self.velocity['x'] = quad(self.qm * (self.velocity.y*Bz - self.velocity.z*By, 0, dt))
         self.velocity['y'] = quad(self.qm * (self.velocity.z*Bx - self.velocity.x*Bz, 0, dt))
