@@ -27,9 +27,9 @@ def analytic_B_center_of_pf_coil(I, R):
 
 @pytest.mark.parametrize(
     "I, R",
-    [[1E3,0.3]
+    [[1E3,0.3], [1E5, 0.02], [1E7, 0.004], [1E2, 1]
     ])
-def check_B_center_of_pf_circular_coil(I, R): 
+def test_B_center_of_pf_circular_coil(I, R): 
     '''
     I: current [A]
     R: coil radius [m]
@@ -37,11 +37,10 @@ def check_B_center_of_pf_circular_coil(I, R):
     '''
 
     # Generate test coil and calculate the field at the center
-    xyz = generate_pf_coil_xyz(R, N = int(1E3))
+    xyz = generate_pf_coil_xyz(R, N = int(1E4))
     test_coil = Coil(xyz, I)
     B_center = test_coil.B([np.array([0,0,0])])
     
     # Compare to analytic calculation
     B_analytic = [analytic_B_center_of_pf_coil(I,R)]
     npt.assert_almost_equal(B_center, B_analytic, decimal = 4)
-    print('all good!')
