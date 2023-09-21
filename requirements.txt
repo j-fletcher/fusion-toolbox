@@ -1,3 +1,5 @@
+requests==2.31.0
+dataserve==0.1.0
 matplotlib>=3.0.0
 numpy>=1.0.0
 pytest>=7.0.0
