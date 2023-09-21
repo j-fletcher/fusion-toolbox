@@ -37,14 +37,5 @@ class ChargedParticle():
     def getVelocity(self):
         return self.velocity
 
-    def interpolateBField(field):
-        
-        rx, ry, rz = np.meshgrid(field.x, field.y, field.z)
-        r = np.column_stack((rx.flatten(), ry.flatten(), rz.flatten()))
 
-        field = np.random.rand(10, 10, 10)
-        B = np.meshgrid(field.Bx, field.By, field.Bz)
-        smoothB = 
-
-        return interpolatedBx, interpolatedBy, interpolatedBz
         

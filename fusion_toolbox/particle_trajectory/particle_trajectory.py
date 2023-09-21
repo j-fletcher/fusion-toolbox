@@ -1,4 +1,5 @@
 import ChargedParticle
+import Field
 import scipy.constants as constants
 import numpy as np
 
