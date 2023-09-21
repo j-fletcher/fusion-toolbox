@@ -11,9 +11,9 @@ class ChargedParticle():
             'z': initialPosition[2]
         }
         self.velocity = {
-            'vx': initialVelocity[0],
-            'vx': initialVelocity[1],
-            'vx': initialVelocity[2]
+            'x': initialVelocity[0],
+            'x': initialVelocity[1],
+            'x': initialVelocity[2]
         }
         self.qm = charge/mass
         
