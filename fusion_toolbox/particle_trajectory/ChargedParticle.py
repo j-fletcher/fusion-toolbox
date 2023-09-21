@@ -35,4 +35,3 @@ class ChargedParticle():
     
     def getVelocity(self):
         return np.array([self.velocity['x'], self.velocity['y'], self.velocity['z']])
-        
