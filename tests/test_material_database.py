@@ -1,4 +1,4 @@
-import os.path
+from pathlib import Path
 
 
 def test_material_save_to(tmp_path):
@@ -8,6 +8,7 @@ def test_material_save_to(tmp_path):
     d = tmp_path
 
     filename = str(d / 'test_mat_database.pkl')
+    p = Path(filename)
 
     test_material = Material(
         name='test',
@@ -18,6 +19,4 @@ def test_material_save_to(tmp_path):
 
     test_material.save_to(filename)
 
-    print(filename)
-
-    assert os.path.exists(filename)
+    assert p.exists()
