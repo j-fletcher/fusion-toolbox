@@ -2,7 +2,6 @@ import numpy as np
 import numpy.testing as npt
 from math import pi
 from fusion_toolbox.Bfield import *
-from IPython import embed
 import pytest
 
 MU_0 = 4*pi*1E-7 # T * m / A
