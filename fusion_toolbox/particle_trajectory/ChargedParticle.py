@@ -1,5 +1,4 @@
 import numpy as np
-
 from scipy.integrate import quad
 
 
@@ -23,7 +22,7 @@ class ChargedParticle():
         self.position['z'] += dt * self.velocity['z']
 
     def updateVelocity(self, dt, field):
-        
+
         # interpolate B field at particle position
         Bx, By, Bz = field.interpolateBField(self.getPosition())
 
@@ -35,5 +34,5 @@ class ChargedParticle():
         return np.array([self.position['x'], self.position['y'], self.position['z']])
     
     def getVelocity(self):
-        return self.velocity
+        return np.array([self.velocity['x'], self.velocity['y'], self.velocity['z']])
         
