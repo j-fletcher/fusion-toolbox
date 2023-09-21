@@ -29,10 +29,11 @@ class WolframAPI(object):
         Calls the Short Answers API and returns a string of text with the reply
 
         Args:
-            i (str): text prompt for API.
+            compound (str): material of interest, e.g. "water"
+            property (str): desired material property, e.g. "density"
         
         Returns:
-            result (str): WolframAlpha Short Answer to the prompt. Usually the first search result for the prompt.
+            result (str): WolframAlpha Short Answer to the prompt. Given with metric units.
         """
         key = self.key
 
