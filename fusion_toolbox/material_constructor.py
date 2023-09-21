@@ -33,4 +33,4 @@ class Material:
             dc.trials = []
 
         dc.trials.append(self)
-        dc.save('material_database.pkl')
+        dc.save(filename)
