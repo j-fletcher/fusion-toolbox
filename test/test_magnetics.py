@@ -3,10 +3,18 @@ import numpy.testing as npt
 from math import pi
 from fusion_toolbox.Bfield import *
 from IPython import embed
+import pytest
 
 MU_0 = 4*pi*1E-7 # T * m / A
 
 def generate_pf_coil_xyz(R, N = 100, z = 0): 
+    '''
+    Get xyz coordinates of points along a pf coil 
+    R: radius [m]
+    N: number of points 
+    z: pf coil height [m]
+    Returns: xyz - np.ndarray [N,3]
+    '''
     thetas =  np.linspace(0, 2*pi, N)
     xyz = np.zeros((N,3))
     xyz[:,0] = R * np.cos(thetas)
@@ -17,8 +25,14 @@ def generate_pf_coil_xyz(R, N = 100, z = 0):
 def analytic_B_center_of_pf_coil(I, R): 
     return np.array([0,0,MU_0 * I / (2 * R)])
 
+@pytest.mark.parametrize(
+    "I, R",
+    [[1E3,0.3]
+    ])
 def check_B_center_of_pf_circular_coil(I, R): 
     '''
+    I: current [A]
+    R: coil radius [m]
     Checks the calculated field at the center of a circular coil against the analytic solution
     '''
 
@@ -30,3 +44,4 @@ def check_B_center_of_pf_circular_coil(I, R):
     # Compare to analytic calculation
     B_analytic = [analytic_B_center_of_pf_coil(I,R)]
     npt.assert_almost_equal(B_center, B_analytic, decimal = 4)
+    print('all good!')
