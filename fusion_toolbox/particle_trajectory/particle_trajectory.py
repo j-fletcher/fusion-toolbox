@@ -1,0 +1,2 @@
+def lorentzForceIntegration(particle, magneticField):
+    
