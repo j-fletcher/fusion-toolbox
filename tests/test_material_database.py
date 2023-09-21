@@ -3,7 +3,7 @@ from pathlib import Path
 
 def test_material_save_to(tmp_path):
     "test the method that stores data of a Material object"
-    from fusion_toolbox.material_constructor import Material
+    from fusion_toolbox.materials.material_constructor import Material
 
     d = tmp_path
 
