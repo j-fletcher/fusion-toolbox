@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Field:
     def __init__(self, x, y, z, fx, fy, fz):
         '''
