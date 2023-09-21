@@ -1,5 +1,4 @@
 import numpy as np
-
 from scipy.integrate import quad
 from scipy.interpolate import LinearNDInterpolator
 
@@ -23,7 +22,7 @@ class ChargedParticle():
         self.position['z'] += dt * self.velocity['z']
 
     def updateVelocity(self, dt, field):
-        
+
         # interpolate B field at particle position
         Bx, By, Bz = self.interpolateBField(field)
 
@@ -35,16 +34,5 @@ class ChargedParticle():
         return np.array([self.position['x'], self.position['y'], self.position['z']])
     
     def getVelocity(self):
-        return self.velocity
-
-    def interpolateBField(field):
-        
-        rx, ry, rz = np.meshgrid(field.x, field.y, field.z)
-        r = np.column_stack((rx.flatten(), ry.flatten(), rz.flatten()))
-
-        field = np.random.rand(10, 10, 10)
-        B = np.meshgrid(field.Bx, field.By, field.Bz)
-        smoothB = 
-
-        return interpolatedBx, interpolatedBy, interpolatedBz
+        return np.array([self.velocity['x'], self.velocity['y'], self.velocity['z']])
         
